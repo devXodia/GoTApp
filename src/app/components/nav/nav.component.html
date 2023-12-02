@@ -1,5 +1,58 @@
 <div class="main-container">
-  <div class="nav" routerLink="/houses">Houses</div>
-  <div class="nav" routerLink="/persons">Persons</div>
-  <div class="nav" routerLink="/quotes">Quotes</div>
+  <div class="audio">
+    @if(this.audio.audioPlaying){
+    <img (click)="stopAudio()" src="../assets/img/volume.png" />
+    } @else {
+    <img (click)="playAudio()" src="../assets/img/mute.png" />
+    }
+  </div>
+  <div class="house-container">
+    <div class="nav">Houses</div>
+    <div class="searchbox">
+      <input
+        [(ngModel)]="houseSearch"
+        (input)="onSearchHouse($event)"
+        class="search"
+        placeholder="Search for House.."
+      />
+    </div>
+    <div class="list">
+      @for (house of foundHouses; track house.index) {
+      <li (click)="onHouseClick(house.name)">{{ house.name }}</li>
+      } @empty {
+      <li>House not found.</li>
+      }
+    </div>
+  </div>
+
+  <div class="persons-container">
+    <div class="nav">Persons</div>
+    <div class="searchbox">
+      <input
+        [(ngModel)]="personSearch"
+        (input)="onSearchPerson($event)"
+        class="search"
+        placeholder="Search for Person.."
+      />
+    </div>
+    <div class="list">
+      @for (char of foundPersons; track char.index) {
+      <li (click)="onCharacterClick(char.name)">{{ char.name }}</li>
+      } @empty {
+      <li>Person not found.</li>
+      }
+    </div>
+  </div>
+
+  <div class="quotes-container">
+    <div class="nav">Quotes</div>
+    <div class="quotes-list">
+      @for (quote of randomQuotes; track quote.index) {
+      <li class="item">{{ quote.sentence }} - {{ quote.character.name }}</li>
+      } @empty {
+      <li>Loading...</li>
+      }
+    </div>
+    <button (click)="fetchRandomQuotes()">Get New Quotes!</button>
+  </div>
 </div>

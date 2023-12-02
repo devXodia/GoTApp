@@ -1,28 +1,32 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HousesComponent } from './components/houses/houses.component';
 import { NavComponent } from './components/nav/nav.component';
-import { PersonsComponent } from './components/persons/persons.component';
-import { QuotesComponent } from './components/quotes/quotes.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HousedetailsComponent } from './components/housedetails/housedetails.component';
+import { CharacterdetailsComponent } from './components/characterdetails/characterdetails.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HousesComponent,
     NavComponent,
-    PersonsComponent,
-    QuotesComponent
+    HousedetailsComponent,
+    CharacterdetailsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserModule,
   ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,28 @@
+<div class="main-container">
+  <div class="audio">
+    @if(this.audio.audioPlaying){
+    <img (click)="stopAudio()" src="../assets/img/volume.png" />
+    } @else {
+    <img (click)="playAudio()" src="../assets/img/mute.png" />
+    }
+  </div>
+  <div class="content">
+    <span class="home" routerLink="/">Back To Home</span>
+    <h2>Character Details</h2>
+    <p>Name: {{ charData?.[0]?.name || "Loading..." }}</p>
+    <p (click)="onHouseClick(charData[0].house?.name)">
+      House:
+      <span class="houseName">{{ charData?.[0]?.house?.name || "None" }}</span>
+    </p>
+    <div class="quotes-container">
+      <span>Quotes:</span>
+      <div class="list">
+        @for (quote of charData?.[0]?.quotes; track quote.index) {
+        <li>{{ quote }}</li>
+        } @empty {
+        <li>No Quotes.</li>
+        }
+      </div>
+    </div>
+  </div>
+</div>

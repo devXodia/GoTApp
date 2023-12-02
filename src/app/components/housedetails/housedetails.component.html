@@ -1,0 +1,24 @@
+<div class="main-container">
+  <div class="audio">
+    @if(this.audio.audioPlaying){
+    <img (click)="stopAudio()" src="../assets/img/volume.png" />
+    } @else {
+    <img (click)="playAudio()" src="../assets/img/mute.png" />
+    }
+  </div>
+  <div class="content">
+    <span class="home" routerLink="/">Back To Home</span>
+    <h2>House Details</h2>
+    <p>Name: {{ house[0].name || "Loading..." }}</p>
+    <div class="member-container">
+      <span>Members:</span>
+      <div class="list">
+        @for (member of house[0].members; track member.index) {
+        <li (click)="onMemberClick(member.name)">{{ member.name }}</li>
+        } @empty {
+        <li>No Quotes.</li>
+        }
+      </div>
+    </div>
+  </div>
+</div>
